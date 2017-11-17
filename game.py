@@ -32,11 +32,11 @@ while True:
             print ("--- BLACKJACK ---")
             break 
         else:
-            hit = input("[K]ort eller [S]tanna")
-            if "K" in hit:
-                player.append(random.choice(cards))
-            else:
+            hit = input("[K]ort eller [S]tanna").upper()
+            if "K" not in hit:
                 break
+            else:
+                player.append(random.choice(cards))
      
     while True:
          
