@@ -3,7 +3,7 @@
 import random 
 import os
 
-cards = [2,3,4,5,6,7,8,9,10,10,10,10,11]*4
+deck = [2,3,4,5,6,7,8,9,10,10,10,10,11]*4
 
 playerwin = 0
 computerwin = 0
@@ -11,12 +11,12 @@ computerwin = 0
 while True:
     os.system("clear")
     player = [] 
-    random.shuffle(cards)
+    random.shuffle(deck)
     playerbust = False
     computerbust = False
     
     for i in range(2):
-        player.append(random.choice(cards))
+        player.append(random.choice(deck))
 
     while True:
 
@@ -36,20 +36,20 @@ while True:
             if "K" not in hit:
                 break
             else:
-                player.append(random.choice(cards))
+                player.append(random.choice(deck))
      
     while True:
          
         computer = []
-        random.shuffle(cards)
-        computer.append(random.choice(cards))
+        random.shuffle(deck)
+        computer.append(random.choice(deck))
 
         while True:
 
             totalcomputer = sum(computer)
          
             if totalcomputer < 18:
-                computer.append(random.choice(cards))
+                computer.append(random.choice(deck))
              
             else:
                 break
@@ -88,7 +88,4 @@ while True:
     if "N" in exit:
         break
 
-print ("Tack för att du spelade!")
-    
-    
- 
+print ("Tack för att du spelade!") 
