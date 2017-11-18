@@ -46,7 +46,7 @@ while cash > 0:
         elif totalplayer == 21:
             print ("--- BLACKJACK ---")
             print ("+20")
-            cash += cash + 20
+            cash = cash + 20
             break 
         else:
             hit = input("[K]ort eller [S]tanna").upper()
@@ -92,7 +92,7 @@ while cash > 0:
             print("Datorn VINNER!")
             print("-{}".format(bet))
             computerwin +=1
-            cash += cash - bet
+            cash = cash - bet
         elif totalcomputer == totalplayer:
             print("OAVGJORT!")
         
