@@ -1,1 +1,32 @@
-Simple blackjack game
+BlackJack For Console.
+Copyright (C) 2017 Erik Bodell.
+BlackJack For Console is distributed under the terms of the GNU General Public
+License v3.0.
+Be sure to read it before using this program
+This program comes with NO warranty or support!
+
+
+Running the game: 
+
+Linux:
+
+1.Git Pull / Download the game code
+2 chmod +x game.py
+3 ./game.py
+
+Windows:
+
+1.Install Linux
+2.See "Linux" Section.
+
+
+Made this simple blackjack game for a school project, just for fun and to
+improve my python skills. Commenting in the code is in Swedish, for the school
+project, as i live and go to school in Sweden. 
+
+Feel free to contact me at: 
+
+b0ddan88@protonmail.com
+b0ddan@irc.freenode.com
+http://keybase.io/b0ddan
+                             

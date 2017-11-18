@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
-import random 
+# BlackJack For Console.
+# Copyright (C) 2017 Erik Bodell.
+# BlackJack For Console is distributed under the terms of the GNU General Public License v3.0.
+# Be sure to read it before using this program. 
+# This program comes with NO warranty or support.
+
+import random
 import os
 
 deck = [2,3,4,5,6,7,8,9,10,10,10,10,11]*4
@@ -11,29 +17,33 @@ computerwin = 0
 cash = 200
 bet = 0
 
+
 while cash > 0:
     os.system("clear")
     player = [] 
-    random.shuffle(deck)
+    random.shuffle(deck) 
     playerbust = False
     computerbust = False
     
     for i in range(2):
         player.append(random.choice(deck))
     
-
+    
+    print("BlackJack for console")   
+    print("GPL v3.0\n")
     print("Du har {} marker".format(cash))
-
     bet = int(input("Hur mycket vill du satsa?"))
     
-    while bet > cash:
-        print("Du har inte så mycket marker!")
+# Kollar så att man inte kan "betta" för mer pengar än var variabeln "cash" innehåller
+    while bet > cash:                               
+                                                     
+        print("Du har inte så mycket marker!")       
         
         bet = int(input("Hur mycket vill du satsa?"))
 
         if bet <= cash:
             break
-
+# Loop för Spelarens kort
     while True:
         totalplayer = sum(player)
         print("Spelaren har följande kort: {}, totalt: {}".format(player,totalplayer))
@@ -64,7 +74,8 @@ while cash > 0:
         while True:
 
             totalcomputer = sum(computer)
-         
+
+# Om datorn når 17 eller mer STANNA          
             if totalcomputer < 18:
                 computer.append(random.choice(deck))
              
