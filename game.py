@@ -55,6 +55,7 @@ while cash > 0:
         while bet > cash:
             try:       
                 bet = int(input("Hur mycket vill du satsa?"))
+                break
             except ValueError:
                 print("Välj enbart ett heltal att satsa!")
 
