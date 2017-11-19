@@ -8,11 +8,14 @@
 
 import random
 import os
+import time
 
 deck = [2,3,4,5,6,7,8,9,10,10,10,10,11]*4
 
+playerblackjack = 0
 playerwin = 0
 computerwin = 0
+computerblackjack = 0
 
 cash = 200
 bet = 0
@@ -23,10 +26,16 @@ def clearScreen():
     os.system("cls") #För windows
     os.system("clear") #För linux 
 
+#Liten funktion för välkommstext
+
+def welcome():
+    print("Blackjack För Console!")
+    print("Licensierad av GPL v3.0")
+
 #Kör programmet så länge variabeln "cash" är över 0.
 
 while cash > 0:
-    os.system("clear")
+    clearScreen()
     player = [] 
     random.shuffle(deck) 
     playerbust = False
@@ -36,9 +45,8 @@ while cash > 0:
         player.append(random.choice(deck))
     
     
-    print("BlackJack for console")   
-    print("GPL v3.0\n")
-    print("Du har {} marker".format(cash))
+    welcome()
+    print("\nDu har {} marker".format(cash))
     
     while True:
         try:
@@ -64,8 +72,9 @@ while cash > 0:
     
     while True:
         totalplayer = sum(player)
+        print("Delar ut kort....")
+        time.sleep(3)
         print("Spelaren har följande kort: {}, totalt: {}".format(player,totalplayer))
-
         if totalplayer > 21:
             print ("Spelaren BUSTED!")
             playerbust = True
@@ -75,6 +84,7 @@ while cash > 0:
             print ("--- BLACKJACK ---")
             print ("+20")
             cash = cash + 20
+            playerblackjack +=1
             break 
         else:
             hit = input("[K]ort eller [S]tanna").upper()
@@ -98,31 +108,37 @@ while cash > 0:
              
         else:
             break
-        
+    print("Delar ut kort ...")
+    time.sleep(3)
     print("Datorn har följande kort: {}, totalt: {}".format(computer,totalcomputer))
-
 #Kolla vem som har vunnit
 
     if totalcomputer == 21:
         print("--- BLACKJACK ---")
-
+        computerblackjack +=1
+    
     if totalcomputer > 21:
         print("Datorn BUSTED!")
-        computerbust = True
-           
+        computerbust = True   
+        
         if playerbust == False:
             print("Spelaren VINNER!")
             print("+{}".format(bet*2))
             playerwin +=1
             cash = cash + bet*2
-
+        
+        elif playerbust and computerbust == True:
+            print("Ingen VINNARE!")
+            
+    
     elif totalcomputer > totalplayer:
         print("Datorn VINNER!")
         print("-{}".format(bet))
         computerwin +=1
         cash = cash - bet
+        
     elif totalcomputer == totalplayer:
-        print("OAVGJORT!")
+        print("OAVGJORT! Ingen VINNARE!")
         
     elif totalplayer > totalcomputer:
         
@@ -131,14 +147,17 @@ while cash > 0:
             print("+{}".format(bet*2))
             playerwin +=1
             cash = cash + bet*2
-
+            
         elif computerbust == False:
             print("Datorn VINNER!")
-            print("-{},".format(bet))
+            print("-{}".format(bet))
             computerwin +=1
-            cash = cash - bet    
-        
-    print("Spelaren: {}, Datorn: {}".format(playerwin,computerwin))
+            cash = cash - bet          
+    print("Beräknar resultat ...")
+    time.sleep(6)
+    clearScreen()
+    welcome()
+    print("\nSpelaren: {}\nAntal Blackjacks: {}\nDatorn: {}\nAntal Blackjacks: {}\n".format(playerwin,playerblackjack,computerwin,computerblackjack))
     exit = input("Tryck på valfri tanget för att spela igen eller [N]ej för att avsluta!").upper()
     if "N" in exit:
         break
