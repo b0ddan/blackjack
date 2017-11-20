@@ -23,7 +23,7 @@ bet = 0
 #Funktion för att rensa skärmen
 
 def clearScreen():
-    os.system("cls") #För windows
+    #os.system("cls") #För windows
     os.system("clear") #För linux 
 
 #Liten funktion för välkommstext
@@ -161,6 +161,6 @@ while cash > 0:
     exit = input("Tryck på valfri tanget för att spela igen eller [N]ej för att avsluta!").upper()
     if "N" in exit:
         break
-    else:
+    else :
         print("Du har slut på marker! GAME OVER")
 print ("Tack för att du spelade!") 
