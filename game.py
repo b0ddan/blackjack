@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # BlackJack For Console.
-# Copyright (C) 2017 Erik Bodell.
+# Copyright (C) 2017 Erik Bodell and Jerome Sterin.
 # BlackJack For Console is distributed under the terms of the GNU General Public License v3.0.
 # Be sure to read it before using this program. 
 # This program comes with NO warranty or support.
@@ -95,7 +95,6 @@ while cash > 0:
 
 #Dela ut datorns kort.
    
-    computer = []
     random.shuffle(deck)
     computer.append(random.choice(deck))
     
