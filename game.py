@@ -10,7 +10,7 @@ import random
 import os
 import time
 
-deck = [2,3,4,5,6,7,8,9,10,10,10,10,11]*4
+deck = [2,3,4,5,6,7,8,9,10,10,10,10,11]*20
 
 playerblackjack = 0
 playerwin = 0
@@ -103,7 +103,7 @@ while cash > 0:
 
         totalcomputer = sum(computer)          
         
-        if totalcomputer < 18:
+        if totalcomputer <=16:
             computer.append(random.choice(deck))
              
         else:
