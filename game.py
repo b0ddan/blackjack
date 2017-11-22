@@ -10,15 +10,7 @@ import random
 import os
 import time
 
-deck = [2,3,4,5,6,7,8,9,10,10,10,10,11]*20
-
-playerblackjack = 0
-playerwin = 0
-computerwin = 0
-computerblackjack = 0
-
-cash = 200
-bet = 0
+deck = ["2","3","4","5","6","7","8","9","10","KN","D","K","A"]*20
 
 #Funktion för att rensa skärmen
 
@@ -33,16 +25,57 @@ def welcome():
     print("Licensierad av GPL v3.0")
 
 #Kör programmet så länge variabeln "cash" är över 0.
-
+cash = 200
+bet = 0
+playerblackjack = 0
+playerwin = 0
+computerblackjack = 0
+computerwin = 0
 while cash > 0:
+    totalcomputer = 0
+    totalplayer = 0
     clearScreen()
     player = [] 
+    computer = []
     random.shuffle(deck) 
     playerbust = False
     computerbust = False
+
+    def computerCards(i):
+        global totalcomputer
+        if i == "A":
+            totalcomputer += 11
+        elif i == "K":
+            totalcomputer += 10
+        elif i == "D":
+            totalcomputer += 10
+        elif i == "KN":
+            totalcomputer += 10
+        else:
+            totalcomputer += int(i)
+ 
+    def playerCards(i):
+        global totalplayer
+        if i == "A":
+            totalplayer += 11
+        elif i == "K":
+            totalplayer += 10
+        elif i == "D":
+            totalplayer += 10
+        elif i == "KN":
+            totalplayer += 10
+        else:
+            totalplayer += int(i)
+
     
     for i in range(2):
-        player.append(random.choice(deck))
+        x = random.randint(1,13)
+        y = random.randint(1,13)
+        playerCards(deck[x])
+        player.append(deck[x])
+        computerCards(deck[y])
+        computer.append(deck[y])
+        
     
     
     welcome()
@@ -71,15 +104,22 @@ while cash > 0:
 #För spelarens kort.
     
     while True:
-        totalplayer = sum(player)
+
         print("Delar ut kort....")
         time.sleep(3)
-        print("Spelaren har följande kort: {}, totalt: {}".format(player,totalplayer))
+        print("Datorn har följande kort: {}, totalt: {}".format(computer,(totalcomputer)))
+        print("Spelaren har följande kort: {}, totalt: {}".format(player,(totalplayer)))
+        
+
         if totalplayer > 21:
             print ("Spelaren BUSTED!")
             playerbust = True
             break
         
+        elif totalcomputer == 21:
+            print("--- BLACKJACK ---")
+            computerblackjack +=1
+            break
         elif totalplayer == 21:
             print ("--- BLACKJACK ---")
             print ("+20")
@@ -91,31 +131,25 @@ while cash > 0:
             if "K" not in hit:
                 break
             else:
-                player.append(random.choice(deck))
+                x = random.randint(1,13)
+                playerCards(deck[x])
+                player.append(deck[x])
 
 #Dela ut datorns kort.
    
-    random.shuffle(deck)
-    computer.append(random.choice(deck))
     
-    while True:
-
-        totalcomputer = sum(computer)          
-        
-        if totalcomputer <=16:
-            computer.append(random.choice(deck))
+    while totalcomputer  <=16 and playerbust == False and totalplayer != 21:
+            x = random.randint(1,13)
+            computerCards(deck[x])
+            computer.append(deck[x])
+            print("Delar ut kort ...")
+            time.sleep(3)
+            print("Datorn har följande kort:, {} totalt: {}".format(computer,totalcomputer))
              
-        else:
-            break
-    print("Delar ut kort ...")
-    time.sleep(3)
-    print("Datorn har följande kort: {}, totalt: {}".format(computer,totalcomputer))
 #Kolla vem som har vunnit
-
     if totalcomputer == 21:
         print("--- BLACKJACK ---")
-        computerblackjack +=1
-    
+        computerblackjack +=1 
     if totalcomputer > 21:
         print("Datorn BUSTED!")
         computerbust = True   
@@ -157,7 +191,7 @@ while cash > 0:
     clearScreen()
     welcome()
     print("\nSpelaren: {}\nAntal Blackjacks: {}\nDatorn: {}\nAntal Blackjacks: {}\n".format(playerwin,playerblackjack,computerwin,computerblackjack))
-    exit = input("Tryck på valfri tanget för att spela igen eller [N]ej för att avsluta!").upper()
+    exit = input("Tryck på valfri tangent för att spela igen eller [N]ej för att avsluta!").upper()
     if "N" in exit:
         break
     else :
