@@ -147,9 +147,6 @@ while cash > 0:
             print("Datorn har följande kort:, {} totalt: {}".format(computer,totalcomputer))
              
 #Kolla vem som har vunnit
-    if totalcomputer == 21:
-        print("--- BLACKJACK ---")
-        computerblackjack +=1 
     if totalcomputer > 21:
         print("Datorn BUSTED!")
         computerbust = True   
