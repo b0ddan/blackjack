@@ -41,6 +41,7 @@ while cash > 0:
     playerbust = False
     computerbust = False
 
+#Function för att visa datorns "klädda" och "vanliga" kort med värde i variabeln "totalcomputer"
     def computerCards(i):
         global totalcomputer
         if i == "A":
@@ -53,7 +54,7 @@ while cash > 0:
             totalcomputer += 10
         else:
             totalcomputer += int(i)
- 
+ #Function för att visa spelarens "klädda" kort och "vanliga" med värde i variabeln "totalplayer". 
     def playerCards(i):
         global totalplayer
         if i == "A":
@@ -109,7 +110,6 @@ while cash > 0:
         time.sleep(3)
         print("Datorn har följande kort: {}, totalt: {}".format(computer,(totalcomputer)))
         print("Spelaren har följande kort: {}, totalt: {}".format(player,(totalplayer)))
-        
 
         if totalplayer > 21:
             print ("Spelaren BUSTED!")
